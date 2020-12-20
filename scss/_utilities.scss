@@ -1,0 +1,166 @@
+@import "config";
+
+// Images
+.img {
+  width: 100%;
+  max-height: 20vh;
+  object-fit: cover;
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+}
+
+#soJuckImg{
+  max-width: 80%;
+  display: block;
+  margin: 1rem auto;
+}
+
+
+//Hamburger Menu Overlay And inner ul
+.menu-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+
+  ul.ulNavBar{
+    list-style: none;
+
+    li.link {
+      margin-bottom: 1.5rem;
+
+      a {
+        
+        color: $light-color;
+        font-weight: bolder;
+        font-size: 1rem;
+        letter-spacing: 0.2rem;
+        width: 150px;
+        display: inline-block;
+      }
+    }
+  }
+
+  .toggler {
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    opacity: 0;
+
+    /* Toggler Animation */
+    &:checked + .hamburger > div {
+      transform: rotate(135deg);
+    }
+
+    /* Turns Lines Into X */
+    &:checked + .hamburger > div:before,
+    &:checked + .hamburger > div:after {
+      top: 0;
+      transform: rotate(90deg);
+    }
+
+    /* Rotate On Hover When Checked */
+    &:checked:hover + .hamburger > div {
+      transform: rotate(225deg);
+    }
+
+    /* Show Menu */
+    &:checked ~ .menu {
+      visibility: visible;
+    }
+
+    &:checked ~ .menu > div {
+      transform: scale(1);
+      transition: transform 0.4s ease 0.4s;
+    }
+
+    &:checked ~ .menu > div > div {
+      opacity: 1;
+      transition: opacity 0.5s ease 0.5s;
+    }
+  }
+
+  .hamburger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 20px;
+    height: 20px;
+    padding: 1rem;
+    background: rgba($secondary-color,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: $light-color 1px solid;
+
+    /* Hamburger Line */
+    & > div {
+      position: relative;
+      flex: none;
+      width: 100%;
+      height: 2px;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s ease;
+
+      /* Hamburger Lines - Top & Bottom */
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        z-index: 1;
+        top: -10px;
+        width: 100%;
+        height: 2px;
+        background: inherit;
+      }
+
+      /* Moves Line Down */
+      &::after {
+        top: 10px;
+      }
+    }
+  }
+
+  .menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > div {
+      background: rgba($dark-color, 0.9);
+      border-radius: 50%;
+      width: 400vw;
+      height: 400vw;
+      display: flex;
+      flex: none;
+      align-items: center;
+      justify-content: center;
+      transform: scale(0);
+      transition: all 0.4s ease-in-out;
+
+      & > div {
+        text-align: center;
+        max-width: 90vw;
+        max-height: 100vh;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
+    }
+  }
+}

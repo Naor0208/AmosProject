@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css');
+
+//Variables
+$primary-color: rgb(27, 83, 32);
+$secondary-color: rgb(53, 126, 62);
+$dark-color: #2b462b;
+$light-color: #fffefe;
+$font-family: "Varela Round", sans-serif;
+
+// Set text color based on background
+@function set-text-color($color) {
+  @if (lightness($color) > 60) {
+    @return $dark-color;
+  } @else {
+    @return $light-color;
+  }
+}
+
+// Set background & text color
+@mixin set-background($color) {
+  background-color: $color;
+  color: set-text-color($color);
+}
+
+// Margin & Padding
+$spaceamounts: (1, 2, 3, 4, 5);
+
+@each $space in $spaceamounts {
+  // All around margin
+  .m-#{$space} {
+    margin: #{$space}rem;
+  }
+
+  // Horizontal Margin
+  .mx-#{$space} {
+    margin: 0 #{$space}rem;
+  }
+
+  // Vertical Margin
+  .my-#{$space} {
+    margin: #{$space}rem 0;
+  }
+
+  // All around Padding
+  .p-#{$space} {
+    padding: #{$space}rem;
+  }
+
+  // Horizontal Padding
+  .px-#{$space} {
+    padding: 0 #{$space}rem;
+  }
+
+  // Vertical Padding
+  .py-#{$space} {
+    padding: #{$space}rem 0;
+  }
+}
