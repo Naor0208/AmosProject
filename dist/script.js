@@ -1,23 +1,24 @@
 // Variables
 const body = document.querySelector("body");
 const ulNavBar = document.querySelector(".ulNavBar");
+const homeListLinks = document.querySelector(".homeListLinks");
 const navLinks = document.querySelectorAll(".link");
 const pages = document.querySelectorAll(".page");
 
 // Events
 ulNavBar.addEventListener("click", choosePage);
+homeListLinks.addEventListener("click", choosePage);
 
 // Window events to know when the screen is big enough for ul
 window.addEventListener("load", checkWidth);
 window.onresize = function windowResized() {
-  checkWidth()
-}
+  checkWidth();
+};
 
 function checkWidth() {
-  if (window.innerWidth > 1000) {
+  if (window.innerWidth > 1100) {
     document.querySelector(".toggler").checked = true;
-  }
-  else{
+  } else {
     check();
   }
 }
@@ -25,7 +26,6 @@ function checkWidth() {
 function check() {
   document.querySelector(".toggler").checked = false;
 }
-
 
 function choosePage(e) {
   const eventTargetParent = e.target.parentElement;
@@ -44,6 +44,3 @@ function choosePage(e) {
   // Stops from sending # to URL
   e.preventDefault();
 }
-
-
-
